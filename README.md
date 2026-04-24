@@ -11,6 +11,11 @@ AudibleSense is an advanced, end-to-end video and audio translation pipeline wit
 - **Video & Audio Merging**: Seamlessly merges the newly synthesized translated audio with the original video, ensuring high-quality audio-video synchronization using FFmpeg.
 - **Premium Web Dashboard**: A fully featured Flask-based web interface sporting a modern, dark-mode aesthetic with glassmorphism, micro-animations, and intuitive form controls. 
 
+## Screenshots
+
+![Home Dashboard](assets/home_dashboard.png)
+![Video Upload & Extraction](assets/module1_upload.png)
+
 ## Requirements
 Make sure you have the following installed:
 - Python 3.8+
