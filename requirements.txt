@@ -1,0 +1,22 @@
+# Project: AudibleSense
+# Hardware: GPU (NVIDIA recommended) [cite: 173]
+
+# Core Machine Learning Frameworks (Specified Versions)
+tensorflow
+keras
+
+# Module 1: Video Input & Preprocessing
+ffmpeg-python
+
+# Module 2: Speech Recognition (ASR)
+openai-whisper
+
+# Module 3: Subtitle Generation & Translation
+googletrans
+
+# Module 4: Emotion-Aware Speech Synthesis
+edge-tts
+
+# Web Interface & Utilities
+Flask
+python-dotenv

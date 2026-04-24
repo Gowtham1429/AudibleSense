@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="step-badge" style="color: var(--accent);">Step 4</div>
+    <h2 style="color: var(--text-main)"><i class="fas fa-microphone-alt"></i> Final Synthesis</h2>
+    <p style="color: var(--text-muted);">Review the translated script below and generate the AI voice output.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 25px 0;">
+        <div>
+            <h5 style="color: var(--text-muted); margin-bottom: 8px; font-weight: 600;"><i class="fas fa-file-alt"></i> Original (EN)</h5>
+            <div style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); padding: 15px; border-radius: 12px; height: 220px; overflow-y: auto;">
+                <pre style="white-space: pre-wrap; font-size: 13px; margin: 0; color: var(--text-muted);">{{ original_text if original_text else "No English script found." }}</pre>
+            </div>
+        </div>
+
+        <div>
+            <h5 style="color: var(--accent); margin-bottom: 8px; font-weight: 600;"><i class="fas fa-language"></i> Translated Script</h5>
+            <div style="background: rgba(6, 182, 212, 0.05); border: 1px solid rgba(6,182,212,0.3); padding: 15px; border-radius: 12px; height: 220px; overflow-y: auto;">
+                <pre style="white-space: pre-wrap; font-size: 14px; margin: 0; color: var(--text-main);">{{ translated_text if translated_text else "No translation found." }}</pre>
+            </div>
+        </div>
+    </div>
+
+    {% if not final_audio %}
+    <form action="/run_module4" method="POST" onsubmit="showLoading()">
+        <input type="hidden" name="target_lang" value="{{ target_lang }}">
+        <div style="margin-bottom: 25px;">
+            <label style="color: var(--text-main); font-weight: 600;"><i class="fas fa-venus-mars"></i> Select Voice Gender:</label>
+            <select name="gender" style="margin-top: 10px;">
+                <option value="automatic" style="background: var(--bg-base); color: var(--text-main);" selected>Automatic (AI Detection)</option>
+                <option value="female" style="background: var(--bg-base); color: var(--text-main);">Female</option>
+                <option value="male" style="background: var(--bg-base); color: var(--text-main);">Male</option>
+            </select>
+        </div>
+        <button type="submit" id="synthBtn" class="btn btn-gradient" style="width: 100%; padding: 16px; font-size: 1.1rem;">
+            <i class="fas fa-magic"></i> Synthesize Translated Speech
+        </button>
+    </form>
+
+    <div id="loading" style="display: none; text-align: center; margin-top: 30px;">
+        <i class="fas fa-sync fa-spin fa-3x" style="color: var(--accent); margin-bottom: 15px;"></i>
+        <p style="color: var(--text-main); font-weight: 500;">AI Engine is generating the audio file... Please wait.</p>
+    </div>
+    {% endif %}
+
+    {% if final_audio %}
+    <div class="card" style="border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.05); text-align: center; animation: fadeIn 0.6s ease-out; box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);">
+        <i class="fas fa-check-circle fa-4x" style="color: #10b981; margin-bottom: 20px;"></i>
+        <h3 style="color: #10b981; font-size: 24px;">Synthesis Complete!</h3>
+        <p style="color: var(--text-main);">Your translated audio for <strong style="color: white;">{{ final_audio }}</strong> is ready.</p>
+        
+        <div style="margin: 30px 0; background: rgba(0,0,0,0.2); padding: 25px; border-radius: 50px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);">
+            <audio controls style="width: 100%;">
+                <source src="/data/audio_output/{{ final_audio }}?t={{ ts }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="/data/audio_output/{{ final_audio }}?t={{ ts }}" download="{{ final_audio }}" class="btn btn-primary" style="text-decoration: none;">
+                <i class="fas fa-download"></i> Download MP3
+            </a>
+            <form action="/run_module5" method="POST" style="margin: 0;">
+                <button type="submit" class="btn btn-gradient">
+                    <i class="fas fa-film"></i> Proceed to Merging
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
+
+<script>
+    function showLoading() {
+        document.getElementById('synthBtn').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+    }
+</script>
+{% endblock %}

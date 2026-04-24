@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card" style="text-align: center; border: none; background: transparent; box-shadow: none; padding-top: 60px; padding-bottom: 60px;">
+    <div class="step-badge" style="margin-bottom: 20px;">AI Pipeline Platform</div>
+    <h1 style="font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+        <span style="background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AudibleSense</span><br>
+        Multimodal Intelligence
+    </h1>
+    <p style="font-size: 18px; max-width: 600px; margin: 0 auto; margin-bottom: 40px; color: var(--text-muted);">
+        Experience the next generation of video content transformation. Seamlessly extract, transcribe, translate, and synthesize human-like audio across multiple languages.
+    </p>
+    <a href="/module1" class="btn btn-gradient" style="font-size: 18px; padding: 16px 40px; border-radius: 30px;">
+        Start Pipeline <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+    </a>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; margin-top: 40px;">
+    <div class="card" style="text-align: center;">
+        <i class="fas fa-video fa-2x" style="color: var(--accent); margin-bottom: 15px; text-shadow: 0 0 10px rgba(6,182,212,0.4);"></i>
+        <h3>Video Processing</h3>
+        <p>Extracting high-fidelity audio streams securely for further deep analysis.</p>
+    </div>
+    <div class="card" style="text-align: center;">
+        <i class="fas fa-closed-captioning fa-2x" style="color: var(--secondary); margin-bottom: 15px; text-shadow: 0 0 10px rgba(236,72,153,0.4);"></i>
+        <h3>AI Transcription</h3>
+        <p>Generating completely accurate subtitles using state-of-the-art ASR models.</p>
+    </div>
+    <div class="card" style="text-align: center;">
+        <i class="fas fa-language fa-2x" style="color: var(--primary); margin-bottom: 15px; text-shadow: 0 0 10px rgba(99,102,241,0.4);"></i>
+        <h3>Language Translation</h3>
+        <p>Breaking barriers with multi-language ultra-fast subtitle localization.</p>
+    </div>
+    <div class="card" style="text-align: center;">
+        <i class="fas fa-microphone fa-2x" style="color: #10b981; margin-bottom: 15px; text-shadow: 0 0 10px rgba(16,185,129,0.4);"></i>
+        <h3>Speech Synthesis</h3>
+        <p>Creating dynamic, emotion-rich human like voices seamlessly from translated text.</p>
+    </div>
+</div>
+{% endblock %}

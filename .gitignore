@@ -1,0 +1,19 @@
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Large archives and specific dataset files
+MELD.Raw/
+MELD.Raw.tar.gz
+cvss/
+cvss.zip
+
+# Output/data directories
+data/
+pipeline_output/
+*.mp4
+*.wav
+*.mp3
+*.mkv
+*.avi
